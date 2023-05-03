@@ -50,7 +50,7 @@ if [[ "$CONFIGURER_TLS" =~ ^[Oo][Uu][Ii]$ ]]; then
   echo "Configuration PSK effectuée"
 fi
 
-# Démarrer l'agent Zabbix
+# Démarrer l'agent Zabbix 
 systemctl start zabbix-agent
 systemctl enable zabbix-agent
 
