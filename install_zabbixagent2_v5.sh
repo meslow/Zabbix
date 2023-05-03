@@ -24,6 +24,10 @@ apt install -y zabbix-agent
 sed -i 's/Server=127.0.0.1/Server=IP_DU_SERVEUR_ZABBIX/' /etc/zabbix/zabbix_agentd.conf
 sed -i 's/ServerActive=127.0.0.1/ServerActive=IP_DU_SERVEUR_ZABBIX/' /etc/zabbix/zabbix_agentd.conf
 sed -i 's/Hostname=Zabbix server/Hostname=Nom_DE_LA_MACHINE/' /etc/zabbix/zabbix_agentd.conf
+sed -i 's/# TLSAccept=unencrypted/TLSAccept=psk/' /etc/zabbix/zabbix_agentd.conf
+sed -i 's/# TLSConnect=unencrypted/TLSConnect=psk/' /etc/zabbix/zabbix_agentd.conf
+sed -i 's/# TLSPSKIdentity=NOM_IDENTITE' /etc/zabbix/zabbix_agentd.conf
+sed -i 's/# TLSPSKFile=/TLSPSKFile=/etc/zabbix/pskfile.psk' /etc/zabbix/zabbix_agentd.conf
 
 # Démarrer l'agent Zabbix
 systemctl start zabbix-agent
