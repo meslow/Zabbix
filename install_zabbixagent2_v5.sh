@@ -7,19 +7,24 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Mettre à jour le système
-apt update && apt upgrade -y
+echo "Mise a jour des depots"
+apt update -y
 
 # Installer les dépendances
+echo "Installation des dependance si necessaire"
 apt install -y wget
 
 # Télécharger et installer l'agent Zabbix
 wget https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+focal_all.deb
 dpkg -i zabbix-release_5.0-1+focal_all.deb
 apt update
+echo "Installation de l'agent Zabbix"
 apt install -y zabbix-agent
 
+echo "Début de la configuration de Zabbix"
+
 # Demander à l'utilisateur de saisir l'adresse IP du serveur Zabbix
-read -p "Veuillez saisir l'adresse IP du serveur Zabbix : " IP_DU_SERVEUR_ZABBIX
+read -p "Veuillez saisir l'adresse IP du serveur Zabbix/Proxy Zabbix : " IP_DU_SERVEUR_ZABBIX
 
 # Demander à l'utilisateur de saisir le nom de la machine
 read -p "Veuillez saisir le nom de la machine : " Nom_DE_LA_MACHINE
