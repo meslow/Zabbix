@@ -33,20 +33,20 @@ read -p "Veuillez saisir le nom de la machine : " Nom_DE_LA_MACHINE
 read -p "Voulez-vous configurer les lignes TLS ? (Oui/Non) : " CONFIGURER_TLS
 
 # Configurer l'agent Zabbix
-sed -i "s/Server=127.0.0.1/Server=$IP_DU_SERVEUR_ZABBIX/" /etc/zabbix/zabbix_agentd.conf
-sed -i "s/ServerActive=127.0.0.1/ServerActive=$IP_DU_SERVEUR_ZABBIX/" /etc/zabbix/zabbix_agentd.conf
-sed -i "s/Hostname=Zabbix server/Hostname=$Nom_DE_LA_MACHINE/" /etc/zabbix/zabbix_agentd.conf
+sed -i "s/Server=127.0.0.1/Server=$IP_DU_SERVEUR_ZABBIX/" /etc/zabbix/zabbix_agent2.conf
+sed -i "s/ServerActive=127.0.0.1/ServerActive=$IP_DU_SERVEUR_ZABBIX/" /etc/zabbix/zabbix_agent2.conf
+sed -i "s/Hostname=Zabbix server/Hostname=$Nom_DE_LA_MACHINE/" /etc/zabbix/zabbix_agent2.conf
 
 # Configurer les lignes TLS si demandé
 if [[ "$CONFIGURER_TLS" =~ ^[Oo][Uu][Ii]$ ]]; then
-  sed -i 's/# TLSAccept=unencrypted/TLSAccept=psk/' /etc/zabbix/zabbix_agentd.conf
-  sed -i 's/# TLSConnect=unencrypted/TLSConnect=psk/' /etc/zabbix/zabbix_agentd.conf
+  sed -i 's/# TLSAccept=unencrypted/TLSAccept=psk/' /etc/zabbix/zabbix_agent2.conf
+  sed -i 's/# TLSConnect=unencrypted/TLSConnect=psk/' /etc/zabbix/zabbix_agent2.conf
   read -p "Veuillez saisir l'identité TLSPSK : " TLSPSKIdentity
   read -p "Veuillez saisir le chemin vers le fichier TLSPSK : " TLSPSKFile
   echo "TLSPSKIdentity=$TLSPSKIdentity"
   echo "TLSPSKFile=$TLSPSKFile"
-  sed -i 's/# TLSPSKIdentity=/TLSPSKIdentity=$TLSPSKIdentity/' /etc/zabbix/zabbix_agentd.conf
-  sed -i 's/# TLSPSKFile=/TLSPSKFile=$TLSPSKFile/' /etc/zabbix/zabbix_agentd.conf
+  sed -i 's/# TLSPSKIdentity=/TLSPSKIdentity=$TLSPSKIdentity/' /etc/zabbix/zabbix_agent2.conf
+  sed -i 's/# TLSPSKFile=/TLSPSKFile=$TLSPSKFile/' /etc/zabbix/zabbix_agent2.conf
   echo "Configuration PSK effectuée"
 fi
 
