@@ -18,8 +18,8 @@ apt install -y wget
 wget https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+focal_all.deb
 dpkg -i zabbix-release_5.0-1+focal_all.deb
 apt update
-echo "Installation de l'agent Zabbix"
-apt install -y zabbix-agent
+echo "Installation de l'agent Zabbix-agent-2 et de ses plugins"
+apt install zabbix-agent2 zabbix-agent2-plugin-*
 
 echo "Début de la configuration de Zabbix"
 
@@ -51,8 +51,8 @@ if [[ "$CONFIGURER_TLS" =~ ^[Oo][Uu][Ii]$ ]]; then
 fi
 
 # Démarrer l'agent Zabbix 
-systemctl start zabbix-agent
-systemctl enable zabbix-agent
+systemctl restart zabbix-agent2
+systemctl enable zabbix-agent2
 
 # Vérifier l'état de l'agent Zabbix
-systemctl status zabbix-agent
+systemctl status zabbix-agent2
