@@ -15,8 +15,8 @@ echo "Installation des dependance si necessaire"
 apt install -y wget
 
 # Télécharger et installer l'agent Zabbix
-wget https://repo.zabbix.com/zabbix/5.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_5.0-1+focal_all.deb
-dpkg -i zabbix-release_5.0-1+focal_all.deb
+wget https://repo.zabbix.com/zabbix/6.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.4-1+ubuntu22.04_all.deb
+dpkg -i zabbix-release_6.4-1+ubuntu22.04_all.deb
 apt update
 echo "Installation de l'agent Zabbix-agent-2 et de ses plugins"
 apt install zabbix-agent2 zabbix-agent2-plugin-*
